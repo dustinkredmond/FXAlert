@@ -24,6 +24,7 @@ import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -62,6 +63,9 @@ public class TestFXAlert extends Application {
         result2.ifPresent(e -> {
             FXAlert.info().withText("User clicked " + e.getText()).show();
         });
+
+        FXAlert.setGlobalTitleBarIcon(new Image(getClass().getResourceAsStream("java.png")));
+        FXAlert.showInfo("This has a custom icon."); // well, on some desktops, not all Linux distros
 
     }
 

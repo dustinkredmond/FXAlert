@@ -20,6 +20,7 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 
 /**
  * Class for easily building JavaFX Alerts.
@@ -271,6 +272,22 @@ public class FXAlert {
         return new AlertBuilder(alert);
     }
 
+
+    /**
+     * Adds an title bar icon to be used for all FXAlert
+     * methods. Once enabled, set to null to disable further
+     * Alert's from inheriting this icon.
+     * @param image A JavaFX Image for the Alert title bar
+     */
+    public static void setGlobalTitleBarIcon(Image image) {
+        FXAlert.iconImage = image;
+    }
+
     private static final String EMPTY_STRING = "";
+    private static Image iconImage = null;
+
+    public static Image getIconImage() {
+        return FXAlert.iconImage;
+    }
 
 }

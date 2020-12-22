@@ -229,6 +229,7 @@ public class AlertBuilder {
      * @return The {@code javafx.scene.control.ButtonType} activated by the user.
      */
     public Optional<ButtonType> showAndWait() {
+        addGlobalIconIfConfigured();
         return this.alert.showAndWait();
     }
 
@@ -236,6 +237,7 @@ public class AlertBuilder {
      * Shows a non-blocking alert on the JavaFX Application thread.
      */
     public void showLater() {
+        addGlobalIconIfConfigured();
         Platform.runLater(this.alert::show);
     }
 
@@ -244,15 +246,30 @@ public class AlertBuilder {
      * @return The {@code javafx.scene.control.ButtonType} activated by the user.
      */
     public Optional<ButtonType> showAndWaitLater() {
+        addGlobalIconIfConfigured();
         AtomicReference<Optional<ButtonType>> buttonType = new AtomicReference<>();
         Platform.runLater(() -> buttonType.set(this.alert.showAndWait()));
         return buttonType.get();
+    }
+
+    private void addGlobalIconIfConfigured() {
+        if (alert == null) {
+            return;
+        }
+
+        Stage alertStage = ((Stage) alert.getDialogPane().getScene().getWindow());
+        if (FXAlert.getIconImage() != null) {
+            alertStage.getIcons().remove(FXAlert.getIconImage());
+        } else {
+            alertStage.getIcons().removeAll();
+        }
     }
 
     /**
      * Shows a non-blocking alert.
      */
     public void show() {
+        addGlobalIconIfConfigured();
         this.alert.show();
     }
 
@@ -261,7 +278,16 @@ public class AlertBuilder {
      * @return Built {@code javafx.scene.control.AlertType}
      */
     public Alert build() {
+        addGlobalIconIfConfigured();
         return this.alert;
+    }
+
+    /**
+     * Returns the {@code Alert} as currently constructed by {@code AlertBuilder}
+     * @return Built {@code javafx.scene.control.AlertType}
+     */
+    public Alert getAlert() {
+        return build();
     }
 
     private final Alert alert;
