@@ -67,6 +67,9 @@ public class TestFXAlert extends Application {
         FXAlert.setGlobalTitleBarIcon(new Image(getClass().getResourceAsStream("java.png")));
         FXAlert.showInfo("This has a custom icon."); // well, on some desktops, not all Linux distros
 
+        FXAlert.setGlobalTitleBarIcon(null);
+        FXAlert.showInfo("This one does not have a custom icon.");
+
     }
 
     public static void main(String[] args) {
