@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -259,7 +260,7 @@ public class AlertBuilder {
 
         Stage alertStage = ((Stage) alert.getDialogPane().getScene().getWindow());
         if (FXAlert.getIconImage() != null) {
-            alertStage.getIcons().remove(FXAlert.getIconImage());
+            alertStage.getIcons().add(FXAlert.getIconImage());
         } else {
             alertStage.getIcons().removeAll();
         }
