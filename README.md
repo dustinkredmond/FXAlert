@@ -1,5 +1,7 @@
 ## FXAlert
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.dustinredmond.fxalert/FXAlert.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.dustinredmond.fxalert%22%20AND%20a:%22FXAlert%22)
+
 FXAlert believes that dialogs should come easy. JavaFX Alerts can be slightly convoluted.
 For example, if we want to add a custom icon to a JavaFX Alert, we must create this monster:
 
@@ -12,7 +14,7 @@ JavaFX Alerts in general, a much smoother process.
 
 ### How to get FXAlert
 
-We're on Maven Central. Use Maven or Gradle.
+We're on Maven Central. Use Maven or your favorite build tool.
 
 In pom.xml
 ```xml
