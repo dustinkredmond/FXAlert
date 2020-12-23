@@ -24,6 +24,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -33,7 +34,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * Contains API that simplifies creating JavaFX
@@ -222,6 +225,26 @@ public class AlertBuilder {
     public AlertBuilder withButtonTypes(List<ButtonType> buttonTypes) {
         this.alert.getButtonTypes().clear();
         this.alert.getButtonTypes().addAll(buttonTypes);
+        return this;
+    }
+
+    /**
+     * Sets the initModality property of the {@code Alert}
+     * @param modality The {@code Alert}'s initial modality
+     * @return The AlertBuilder
+     */
+    public AlertBuilder withInitModality(Modality modality) {
+        this.alert.initModality(modality);
+        return this;
+    }
+
+    /**
+     * Sets the initOwner property of the {@code Alert}.
+     * @param window The {@code Alert}'s initial owner
+     * @return The AlertBuilder
+     */
+    public AlertBuilder withInitOwner(Window window) {
+        this.alert.initOwner(window);
         return this;
     }
 
