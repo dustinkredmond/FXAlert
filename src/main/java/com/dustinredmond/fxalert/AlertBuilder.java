@@ -22,12 +22,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -36,6 +36,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
 /**
@@ -245,6 +246,186 @@ public class AlertBuilder {
      */
     public AlertBuilder withInitOwner(Window window) {
         this.alert.initOwner(window);
+        return this;
+    }
+
+    /**
+     * Sets the Alert's DialogPane's content.
+     * @param content Node for the DialogPane's content
+     * @return The AlertBuilder
+     */
+    public AlertBuilder withContent(Node content) {
+        this.alert.getDialogPane().setContent(content);
+        return this;
+    }
+
+    /**
+     * Sets the Alert's DialogPane's expandable content and
+     * whether the content is expanded.
+     * @param content The DialogPane's expandable content
+     * @return The AlertBuilder
+     */
+    public AlertBuilder withExpandableContent(Node content, boolean expanded) {
+        this.alert.getDialogPane().setExpandableContent(content);
+        this.alert.getDialogPane().setExpanded(expanded);
+        return this;
+    }
+
+    /**
+     * Sets the Alert's DialogPane's expandable content
+     * @param content The DialogPane's expandable content
+     * @return The AlertBuilder
+     */
+    public AlertBuilder withExpandableContent(Node content) {
+        this.alert.getDialogPane().setExpandableContent(content);
+        return this;
+    }
+
+    /**
+     * Sets the resizability of the Alert
+     * @param resizable True if the Alert can be resized
+     * @return The AlertBuilder
+     */
+    public AlertBuilder resizable(boolean resizable) {
+        this.alert.setResizable(resizable);
+        return this;
+    }
+
+    /**
+     * Sets the Alert to be resizable
+     * @return The AlertBuilder
+     */
+    public AlertBuilder resizable() {
+        this.alert.setResizable(true);
+        return this;
+    }
+
+    /**
+     * Sets the Alert's initial {@code StageStyle}
+     * @param style The Alert's initial {@code StageStyle}
+     * @return The AlertBuilder
+     */
+    public AlertBuilder withStyle(StageStyle style) {
+        this.alert.initStyle(style);
+        return this;
+    }
+
+    /**
+     * Positions the Alert at the given X position
+     * @param x The x position
+     * @return The AlertBuilder
+     */
+    public AlertBuilder atX(double x) {
+        this.alert.setX(x);
+        return this;
+    }
+
+    /**
+     * Positions the Alert at the given Y position
+     * @param y The y position
+     * @return The AlertBuilder
+     */
+    public AlertBuilder atY(double y) {
+        this.alert.setY(y);
+        return this;
+    }
+
+    /**
+     * Positions the Alert at the given X and Y positions
+     * @param x The x position
+     * @param y The y position
+     * @return The AlertBuilder
+     */
+    public AlertBuilder at(double x, double y) {
+        this.alert.setX(x);
+        this.alert.setY(y);
+        return this;
+    }
+
+    /**
+     * Sets the width of the Alert
+     * @param width The Alert's width
+     * @return The AlertBuilder
+     */
+    public AlertBuilder withWidth(double width) {
+        this.alert.setWidth(width);
+        return this;
+    }
+
+    /**
+     * Sets the height of the Alert
+     * @param height The Alert's height
+     * @return The AlertBuilder
+     */
+    public AlertBuilder withHeight(double height) {
+        this.alert.setHeight(height);
+        return this;
+    }
+
+    /**
+     * Sets the size of the Alert
+     * @param width The Alert's width
+     * @param height The Alert's height
+     * @return The AlertBuilder
+     */
+    public AlertBuilder withSize(double width, double height) {
+        this.alert.setWidth(width);
+        this.alert.setHeight(height);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EventHandler} called when the Alert
+     * is requested to be closed.
+     * @param e The {@code EventHandler}
+     * @return The AlertBuilder
+     */
+    public AlertBuilder onClose(EventHandler<DialogEvent> e) {
+        this.alert.setOnCloseRequest(e);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EventHandler} called when the Alert
+     * is hidden.
+     * @param e The {@code EventHandler}
+     * @return The AlertBuilder
+     */
+    public AlertBuilder onHidden(EventHandler<DialogEvent> e) {
+        this.alert.setOnHidden(e);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EventHandler} called when the Alert
+     * is being hidden.
+     * @param e The {@code EventHandler}
+     * @return The AlertBuilder
+     */
+    public AlertBuilder onHiding(EventHandler<DialogEvent> e) {
+        this.alert.setOnHiding(e);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EventHandler} called when the Alert
+     * is shown.
+     * @param e The {@code EventHandler}
+     * @return The AlertBuilder
+     */
+    public AlertBuilder onShown(EventHandler<DialogEvent> e) {
+        this.alert.setOnShown(e);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EventHandler} called when the Alert
+     * is showing.
+     * @param e The {@code EventHandler}
+     * @return The AlertBuilder
+     */
+    public AlertBuilder onShowing(EventHandler<DialogEvent> e) {
+        this.alert.setOnShowing(e);
         return this;
     }
 

@@ -21,13 +21,13 @@ In pom.xml
 <dependency>
   <groupId>com.dustinredmond.fxalert</groupId>
   <artifactId>FXAlert</artifactId>
-  <version>2.1.0</version>
+  <version>2.2.0</version>
 </dependency>
 ```
 
 In build.gradle
 ```groovy
-compile group: 'com.dustinredmond.fxalert', name: 'FXAlert', version: '2.1.0'
+compile group: 'com.dustinredmond.fxalert', name: 'FXAlert', version: '2.2.0'
 ```
 
 ---
@@ -104,3 +104,15 @@ if (okay) {
     // user cancelled or closed window
 }
 ```
+---
+
+### Documentation
+
+FXAlert is a really simple library; most methods simply wrap JavaFX Alerts. For this reason,
+no separate documentation will be maintained. If you want to get a look at what's going on behind
+the scenes, check out the [AlertBuilder](./src/main/java/com/dustinredmond/fxalert/AlertBuilder.java)
+class, most of the action happens there.
+
+Each method has thorough a Javadoc, whether it's public or private.
+
+---
