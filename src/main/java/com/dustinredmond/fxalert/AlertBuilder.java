@@ -263,6 +263,7 @@ public class AlertBuilder {
      * Sets the Alert's DialogPane's expandable content and
      * whether the content is expanded.
      * @param content The DialogPane's expandable content
+     * @param expanded True is the expandable content should be expanded
      * @return The AlertBuilder
      */
     public AlertBuilder withExpandableContent(Node content, boolean expanded) {
