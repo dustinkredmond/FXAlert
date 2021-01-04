@@ -42,6 +42,8 @@ We can use the static methods:
  - FXAlert.warning()
  - FXAlert.confirm()
  - FXAlert.exception()
+ - FXAlert.input()
+ - FXAlert.flash()
  
 These methods produce a builder-style syntax.
 We can chain method calls to get the behavior we need.
@@ -104,6 +106,57 @@ if (okay) {
     // user cancelled or closed window
 }
 ```
+---
+
+### Input Dialogs
+
+Often times, users are asked to enter a single piece of information.
+FXAlert has built-in functionality to retrieve this. Use `FXAlert.input()`
+
+`FXAlert.input()` works just like the other methods except instead of 
+`show()` or `showAndWait()` methods, there are specific methods for getting
+a particular type of data.
+
+```java
+Optional<String> aString = FXAlert.input().withText("Enter a String:").showAndWaitString();
+Optional<Double> aDouble = FXAlert.input().withText("Enter a Double:").showAndWaitDouble();
+Optional<Integer> anInt = FXAlert.input().withText("Enter an Integer:").showAndWaitInteger();
+```
+
+As well as returning `Optional` values, the underlying input dialog requires that
+users enter the correct data type before submission. The allowed type is determined 
+by the appropriate `showAndWaitXXX` method. This prevents runtime errors when trying t
+o parse the inputs.
+
+---
+
+### "Flash" notifications
+
+These are notifications that cause a banner to be temporarily displayed on the lower-right
+corner of the screen. The banner appears for a few seconds, then fades out of view.
+
+These can be built and invoked like below:
+
+```java
+FXAlert.flash()
+    .withHeader("Some Header Text")
+    .withContent("Some more detailed content text...")
+    .show();
+```
+
+Flash notifications can display custom icons, but can also use the same bundled JavaFX
+icons that we see in `Alert`s. By default, the flash notification uses the `AlertType.INFORMATION`
+icon, but we can specify which we want to see by using one of the below.
+
+```java
+FXAlert.flash().error()      // AlertType.ERROR icon
+FXAlert.flash().warn()      // AlertType.WARNING icon
+FXAlert.flash().confirm()  // AlertType.CONFIRMATION icon
+FXAlert.flash().info()    // AlertType.INFORMATION icon (default)
+
+FXAlert.flash().withGraphic(someNodeHere) // Use a custom icon
+```
+
 ---
 
 ### Documentation
