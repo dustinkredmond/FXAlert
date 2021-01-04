@@ -159,6 +159,23 @@ public class FXAlert {
     }
 
     /**
+     * Prepares a JavaFX ChoiceDialog
+     * @param choices List of choices for user to choose from
+     * @return ChoiceDialogBuilder API
+     */
+    public static ChoiceDialogBuilder choose(String... choices) {
+        return new ChoiceDialogBuilder(choices);
+    }
+
+    /**
+     * Prepares a JavaFX ChoiceDialog
+     * @return ChoiceDialogBuilder API
+     */
+    public static ChoiceDialogBuilder choose() {
+        return new ChoiceDialogBuilder();
+    }
+
+    /**
      * Shows an Alert of type "ERROR" with specified
      * title, header, and content texts.
      * @param title Alert title text

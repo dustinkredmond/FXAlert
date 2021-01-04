@@ -21,13 +21,13 @@ In pom.xml
 <dependency>
   <groupId>com.dustinredmond.fxalert</groupId>
   <artifactId>FXAlert</artifactId>
-  <version>2.2.0</version>
+  <version>2.3.0</version>
 </dependency>
 ```
 
 In build.gradle
 ```groovy
-compile group: 'com.dustinredmond.fxalert', name: 'FXAlert', version: '2.2.0'
+compile group: 'com.dustinredmond.fxalert', name: 'FXAlert', version: '2.3.0'
 ```
 
 ---

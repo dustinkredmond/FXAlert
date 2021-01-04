@@ -18,15 +18,12 @@ package com.dustinredmond.fxalert;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.control.TextFormatter;
-import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
