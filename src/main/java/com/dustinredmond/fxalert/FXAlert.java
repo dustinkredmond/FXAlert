@@ -272,6 +272,9 @@ public class FXAlert {
         return new AlertBuilder(alert);
     }
 
+    public static FlashBuilder flash() {
+        return new FlashBuilder();
+    }
 
     /**
      * Adds an title bar icon to be used for all FXAlert
