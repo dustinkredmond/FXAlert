@@ -230,6 +230,9 @@ public class FlashBuilder {
             grid.setStyle(paneStyle);
         }
 
+        // if either header or content is missing
+        // graphic should only span one column, otherwise
+        // header or content will be "off-centered"
         int rowSpan = (header == null || content == null) ? 1 : 2;
 
         if (graphic != null) {
@@ -244,8 +247,12 @@ public class FlashBuilder {
 
         if (header == null) {
             grid.add(content, 1, 0);
+        } else if (content == null) {
+            grid.add(header, 1, 0);
         } else {
             grid.add(header, 1, 0);
+            grid.add(content, 1, 1);
+
         }
         return scene;
     }

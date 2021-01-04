@@ -31,7 +31,7 @@ public class TestFlashBuilder extends Application {
         // with a header text and buttons for the content
         FXAlert.flash().error()
             .withHeader(new Label("Test1"))
-            .withHeader(new HBox(5, new Button("Close"), new Button("Ignore")))
+            .withContent(new HBox(5, new Button("Close"), new Button("Ignore")))
             .show();
 
         // Displays a "flash" alert of type info
