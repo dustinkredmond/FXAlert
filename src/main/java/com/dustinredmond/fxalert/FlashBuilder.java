@@ -185,6 +185,10 @@ public class FlashBuilder {
         stage.setIconified(false);
         stage.setScene(buildGrid());
 
+        if (FXAlert.getIconImage() != null) {
+            stage.getIcons().add(FXAlert.getIconImage());
+        }
+
         AnimationTimer t = new AnimationTimer() {
             private double wait;
             @Override
