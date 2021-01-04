@@ -6,7 +6,7 @@
 
   <groupId>com.dustinredmond.fxalert</groupId>
   <artifactId>FXAlert</artifactId>
-  <version>2.1.1-SNAPSHOT</version>
+  <version>2.2.0</version>
 
   <name>FXAlert</name>
   <description>Easily build nice-looking JavaFX Alerts</description>
