@@ -151,6 +151,14 @@ public class FXAlert {
     }
 
     /**
+     * Prepares a JavaFX TextInputDialog
+     * @return InputDialogBuilder API
+     */
+    public static InputDialogBuilder input() {
+        return new InputDialogBuilder();
+    }
+
+    /**
      * Shows an Alert of type "ERROR" with specified
      * title, header, and content texts.
      * @param title Alert title text
@@ -272,6 +280,11 @@ public class FXAlert {
         return new AlertBuilder(alert);
     }
 
+    /**
+     * Start constructing a "flash" alert. (An alert temporarily displayed
+     * at the bottom-right of the active screen)
+     * @return FlashBuilder API
+     */
     public static FlashBuilder flash() {
         return new FlashBuilder();
     }
