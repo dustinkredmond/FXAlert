@@ -54,10 +54,8 @@ public class TestFXAlert extends Application {
             .showAndWait();
         result.ifPresent(e -> customAlert.close());
 
-        List<ButtonType> yesAndNo = Arrays
-            .asList(new ButtonType("Yes"), new ButtonType("No"));
         Optional<ButtonType> result2 = FXAlert.confirm()
-            .withButtonTypes(yesAndNo)
+            .withButtonTypes(new ButtonType("Yes"), new ButtonType("No"))
             .withText("Yes or no?")
             .showAndWait();
         result2.ifPresent(e -> {

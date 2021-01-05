@@ -18,7 +18,6 @@ package com.dustinredmond.fxalert;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.application.Platform;
@@ -31,7 +30,6 @@ import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
@@ -43,7 +41,7 @@ import javafx.stage.Window;
  * Contains API that simplifies creating JavaFX
  * {@code javafx.scene.control.Alert}s
  */
-public class AlertBuilder {
+public class AlertBuilder implements IDialogBuilder<AlertBuilder> {
 
     /**
      * Default constructor, creates a default AlertBuilder
@@ -105,12 +103,9 @@ public class AlertBuilder {
     }
 
     /**
-     * Sets the alert's title text, header text, and content text.
-     * @param title The alert's title text
-     * @param header The alert's header text
-     * @param content The alert's content text
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
+    @Override
     public AlertBuilder withText(String title, String header, String content) {
         alert.setTitle(title);
         alert.setHeaderText(header);
@@ -119,98 +114,29 @@ public class AlertBuilder {
     }
 
     /**
-     * Sets the alert's header text and content text.
-     * @param header The alert's header text
-     * @param content The alert's content text
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
-    public AlertBuilder withText(String header, String content) {
-        alert.setTitle(EMPTY_STRING);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        return this;
-    }
-
-    /**
-     * Sets the alert's main content text.
-     * @param contentText The content text
-     * @return The AlertBuilder
-     */
-    public AlertBuilder withText(String contentText) {
-        alert.setTitle(EMPTY_STRING);
-        alert.setHeaderText(EMPTY_STRING);
-        alert.setContentText(contentText);
-        return this;
-    }
-
-    /**
-     * Sets the formatted text as the alert's main content text.
-     * @param contentText The content text (format string)
-     * @param args The format string's arguments.
-     * @return The AlertBuilder
-     */
-    public AlertBuilder withTextFormat(String contentText, Object... args) {
-        alert.setContentText(String.format(contentText, args));
-        return this;
-    }
-
-    /**
-     * Adds the Image as the alert's title bar icon.
-     * @param image A JavaFX {@code Image}
-     * @return The AlertBuilder
-     */
+    @Override
     public AlertBuilder withTitleBarIcon(Image image) {
         ((Stage) this.alert.getDialogPane().getScene().getWindow())
             .getIcons().add(image);
         return this;
     }
 
-    /**
-     * Adds the ImageView as the alert's title bar icon.
-     * @param imageView A JavaFX {@code ImageView}
-     * @return The AlertBuilder
-     */
-    public AlertBuilder withTitleBarIcon(ImageView imageView) {
-        return withTitleBarIcon(imageView.getImage());
-    }
 
     /**
-     * Adds the Image at the given path as the alert's title
-     * bar icon.
-     * @param imagePath Path to an image
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
-    public AlertBuilder withTitleBarIcon(String imagePath) {
-        withTitleBarIcon(new Image(imagePath));
-        return this;
-    }
-
-    /**
-     * Adds the Image at the given path as the alert's header graphic.
-     * @param imagePath Path to an image
-     * @return The AlertBuilder
-     */
-    public AlertBuilder withGraphic(String imagePath) {
-        this.alert.getDialogPane().setGraphic(new ImageView(imagePath));
-        return this;
-    }
-
-    /**
-     * Adds the image as the alert's header graphic.
-     * @param image Image for the header graphic.
-     * @return The AlertBuilder
-     */
+    @Override
     public AlertBuilder withGraphic(Node image) {
         this.alert.getDialogPane().setGraphic(image);
         return this;
     }
 
     /**
-     * Adds the passed {@code javafx.scene.control.ButtonType}s to the
-     * alert.
-     * @param buttonTypes ButtonTypes to add to the alert.
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
+    @Override
     public AlertBuilder withButtonTypes(ButtonType... buttonTypes) {
         this.alert.getButtonTypes().clear();
         this.alert.getButtonTypes().addAll(buttonTypes);
@@ -218,54 +144,36 @@ public class AlertBuilder {
     }
 
     /**
-     * Adds the passed {@code javafx.scene.control.ButtonType}s to the
-     * alert.
-     * @param buttonTypes ButtonTypes to add to the alert.
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
-    public AlertBuilder withButtonTypes(List<ButtonType> buttonTypes) {
-        this.alert.getButtonTypes().clear();
-        this.alert.getButtonTypes().addAll(buttonTypes);
-        return this;
-    }
-
-    /**
-     * Sets the initModality property of the {@code Alert}
-     * @param modality The {@code Alert}'s initial modality
-     * @return The AlertBuilder
-     */
+    @Override
     public AlertBuilder withInitModality(Modality modality) {
         this.alert.initModality(modality);
         return this;
     }
 
     /**
-     * Sets the initOwner property of the {@code Alert}.
-     * @param window The {@code Alert}'s initial owner
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
+    @Override
     public AlertBuilder withInitOwner(Window window) {
         this.alert.initOwner(window);
         return this;
     }
 
     /**
-     * Sets the Alert's DialogPane's content.
-     * @param content Node for the DialogPane's content
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
+    @Override
     public AlertBuilder withContent(Node content) {
         this.alert.getDialogPane().setContent(content);
         return this;
     }
 
     /**
-     * Sets the Alert's DialogPane's expandable content and
-     * whether the content is expanded.
-     * @param content The DialogPane's expandable content
-     * @param expanded True is the expandable content should be expanded
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
+    @Override
     public AlertBuilder withExpandableContent(Node content, boolean expanded) {
         this.alert.getDialogPane().setExpandableContent(content);
         this.alert.getDialogPane().setExpanded(expanded);
@@ -273,70 +181,27 @@ public class AlertBuilder {
     }
 
     /**
-     * Sets the Alert's DialogPane's expandable content
-     * @param content The DialogPane's expandable content
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
-    public AlertBuilder withExpandableContent(Node content) {
-        this.alert.getDialogPane().setExpandableContent(content);
-        return this;
-    }
-
-    /**
-     * Sets the resizability of the Alert
-     * @param resizable True if the Alert can be resized
-     * @return The AlertBuilder
-     */
+    @Override
     public AlertBuilder resizable(boolean resizable) {
         this.alert.setResizable(resizable);
         return this;
     }
 
     /**
-     * Sets the Alert to be resizable
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
-    public AlertBuilder resizable() {
-        this.alert.setResizable(true);
-        return this;
-    }
-
-    /**
-     * Sets the Alert's initial {@code StageStyle}
-     * @param style The Alert's initial {@code StageStyle}
-     * @return The AlertBuilder
-     */
+    @Override
     public AlertBuilder withStyle(StageStyle style) {
         this.alert.initStyle(style);
         return this;
     }
 
     /**
-     * Positions the Alert at the given X position
-     * @param x The x position
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
-    public AlertBuilder atX(double x) {
-        this.alert.setX(x);
-        return this;
-    }
-
-    /**
-     * Positions the Alert at the given Y position
-     * @param y The y position
-     * @return The AlertBuilder
-     */
-    public AlertBuilder atY(double y) {
-        this.alert.setY(y);
-        return this;
-    }
-
-    /**
-     * Positions the Alert at the given X and Y positions
-     * @param x The x position
-     * @param y The y position
-     * @return The AlertBuilder
-     */
+    @Override
     public AlertBuilder at(double x, double y) {
         this.alert.setX(x);
         this.alert.setY(y);
@@ -344,31 +209,9 @@ public class AlertBuilder {
     }
 
     /**
-     * Sets the width of the Alert
-     * @param width The Alert's width
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
-    public AlertBuilder withWidth(double width) {
-        this.alert.setWidth(width);
-        return this;
-    }
-
-    /**
-     * Sets the height of the Alert
-     * @param height The Alert's height
-     * @return The AlertBuilder
-     */
-    public AlertBuilder withHeight(double height) {
-        this.alert.setHeight(height);
-        return this;
-    }
-
-    /**
-     * Sets the size of the Alert
-     * @param width The Alert's width
-     * @param height The Alert's height
-     * @return The AlertBuilder
-     */
+    @Override
     public AlertBuilder withSize(double width, double height) {
         this.alert.setWidth(width);
         this.alert.setHeight(height);
@@ -376,64 +219,54 @@ public class AlertBuilder {
     }
 
     /**
-     * Sets the {@code EventHandler} called when the Alert
-     * is requested to be closed.
-     * @param e The {@code EventHandler}
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
+    @Override
     public AlertBuilder onClose(EventHandler<DialogEvent> e) {
         this.alert.setOnCloseRequest(e);
         return this;
     }
 
     /**
-     * Sets the {@code EventHandler} called when the Alert
-     * is hidden.
-     * @param e The {@code EventHandler}
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
+    @Override
     public AlertBuilder onHidden(EventHandler<DialogEvent> e) {
         this.alert.setOnHidden(e);
         return this;
     }
 
     /**
-     * Sets the {@code EventHandler} called when the Alert
-     * is being hidden.
-     * @param e The {@code EventHandler}
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
+    @Override
     public AlertBuilder onHiding(EventHandler<DialogEvent> e) {
         this.alert.setOnHiding(e);
         return this;
     }
 
     /**
-     * Sets the {@code EventHandler} called when the Alert
-     * is shown.
-     * @param e The {@code EventHandler}
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
+    @Override
     public AlertBuilder onShown(EventHandler<DialogEvent> e) {
         this.alert.setOnShown(e);
         return this;
     }
 
     /**
-     * Sets the {@code EventHandler} called when the Alert
-     * is showing.
-     * @param e The {@code EventHandler}
-     * @return The AlertBuilder
+     * {@inheritDoc}
      */
+    @Override
     public AlertBuilder onShowing(EventHandler<DialogEvent> e) {
         this.alert.setOnShowing(e);
         return this;
     }
 
     /**
-     * Shows a blocking alert.
-     * @return The {@code javafx.scene.control.ButtonType} activated by the user.
+     * {@inheritDoc}
      */
+    @Override
     public Optional<ButtonType> showAndWait() {
         addGlobalIconIfConfigured();
         return this.alert.showAndWait();
@@ -472,8 +305,9 @@ public class AlertBuilder {
     }
 
     /**
-     * Shows a non-blocking alert.
+     * {@inheritDoc}
      */
+    @Override
     public void show() {
         addGlobalIconIfConfigured();
         this.alert.show();
@@ -497,6 +331,5 @@ public class AlertBuilder {
     }
 
     private final Alert alert;
-    private static final String EMPTY_STRING = "";
 
 }

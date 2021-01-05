@@ -29,6 +29,12 @@ public class TestChoiceDialogBuilder extends Application {
             .withText("Choose something:")
             .showAndWait();
         result.ifPresent(System.out::println);
+
+        Optional<String> result2 = FXAlert.choose()
+            .withChoices("One", "Two", "Three")
+            .withText("Pick a number!")
+            .showAndWait();
+        result2.ifPresent(System.out::println);
     }
 
     public static void main(String[] args) {
