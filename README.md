@@ -34,7 +34,7 @@ compile group: 'com.dustinredmond.fxalert', name: 'FXAlert', version: '2.4.0'
 
 ### How does it work?
 
-FXAlert's API makes it easy to create different types of dialog. We have several ways to do this.
+FXAlert's API makes it easy to create different types of dialogs. We have several ways to do this.
 We can use the static methods:
 
  - FXAlert.info()
@@ -45,7 +45,7 @@ We can use the static methods:
  - FXAlert.input()
  - FXAlert.flash()
  
-These methods produce a builder-style syntax.
+These methods return  a builder-style syntax.
 We can chain method calls to get the behavior we need.
 
 `FXAlert.info().withText("Hello, World!").withTitleBarIcon(icon).show();`
@@ -97,7 +97,7 @@ result.ifPresent(e -> {
 });
 
 // But, wait, I don't like Optionals.
-// Fine, we have you covered....
+// You should, but fine, we have you covered....
 
 boolean okay = FXAlert.showConfirmed("Click Ok or Cancel.");
 if (okay) {
@@ -110,8 +110,9 @@ if (okay) {
 
 ### Input Dialogs
 
-Often times, users are asked to enter a single piece of information.
-FXAlert has built-in functionality to retrieve this. Use `FXAlert.input()`
+Often times, users are asked to enter a single piece of information. 
+This was a really easy dialog to build in Swing, but don't fear!
+FXAlert has built-in functionality to retrieve input data. Use `FXAlert.input()`
 
 `FXAlert.input()` works just like the other methods except instead of 
 `show()` or `showAndWait()` methods, there are specific methods for getting
@@ -124,9 +125,9 @@ Optional<Integer> anInt = FXAlert.input().withText("Enter an Integer:").showAndW
 ```
 
 As well as returning `Optional` values, the underlying input dialog requires that
-users enter the correct data type before submission. The allowed type is determined 
-by the appropriate `showAndWaitXXX` method. This prevents runtime errors when trying t
-o parse the inputs.
+users enter the correct data type before submission and prevents entry of other data.
+The allowed type is determined by the appropriate `showAndWaitXXX` method. This prevents runtime errors when trying t
+o parse the inputs, and saves a developer from having to check the returned data is a valid String/Double/Integer.
 
 ---
 
@@ -157,6 +158,10 @@ FXAlert.flash().info()    // AlertType.INFORMATION icon (default)
 FXAlert.flash().withGraphic(someNodeHere) // Use a custom icon
 ```
 
+While the Alert class's built-in icons are nice, in order to retrieve their icons, FXAlert must look them
+up by the appropriate CSS class. Since the JavaFX stylesheet could change in a future release. It's preferred
+that a developer specify their own custom "flash" notification graphic.
+
 ---
 
 ### Documentation
@@ -166,6 +171,7 @@ no separate documentation will be maintained. If you want to get a look at what'
 the scenes, check out the [AlertBuilder](./src/main/java/com/dustinredmond/fxalert/AlertBuilder.java)
 class, most of the action happens there.
 
-Each method has thorough a Javadoc, whether it's public or private.
+Each public method has thorough a Javadoc. Protected, package-private ,and private methods should 
+also define a reasonable Javadoc.
 
 ---
