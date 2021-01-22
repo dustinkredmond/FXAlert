@@ -139,7 +139,7 @@ public class FXAlert {
      */
     public static boolean showConfirmed(String title, String header, String content) {
         Optional<ButtonType> result = confirm().withText(title, header, content).showAndWait();
-        return result.isPresent() && "Ok".equals(result.get().getText());
+        return result.isPresent() && "OK".equalsIgnoreCase(result.get().getText());
     }
 
     /**
