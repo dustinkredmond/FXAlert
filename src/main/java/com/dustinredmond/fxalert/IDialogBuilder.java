@@ -208,7 +208,7 @@ public interface IDialogBuilder<T> {
      * @param style The StageStyle
      * @return the dialog builder
      */
-    T withStyle(StageStyle style);
+    T withStageStyle(StageStyle style);
 
     /**
      * Positions the Alert or Dialog at the given

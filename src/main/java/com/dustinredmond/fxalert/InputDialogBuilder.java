@@ -131,7 +131,7 @@ public class InputDialogBuilder implements IDialogBuilder<InputDialogBuilder> {
      * {@inheritDoc}
      */
     @Override
-    public InputDialogBuilder withStyle(StageStyle style) {
+    public InputDialogBuilder withStageStyle(StageStyle style) {
         dialog.initStyle(style);
         return this;
     }

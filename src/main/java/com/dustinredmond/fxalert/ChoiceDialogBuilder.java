@@ -152,7 +152,7 @@ public class ChoiceDialogBuilder implements IDialogBuilder<ChoiceDialogBuilder> 
      * {@inheritDoc}
      */
     @Override
-    public ChoiceDialogBuilder withStyle(StageStyle style) {
+    public ChoiceDialogBuilder withStageStyle(StageStyle style) {
         dialog.initStyle(style);
         return this;
     }

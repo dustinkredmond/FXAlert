@@ -193,7 +193,7 @@ public class AlertBuilder implements IDialogBuilder<AlertBuilder> {
      * {@inheritDoc}
      */
     @Override
-    public AlertBuilder withStyle(StageStyle style) {
+    public AlertBuilder withStageStyle(StageStyle style) {
         this.alert.initStyle(style);
         return this;
     }
