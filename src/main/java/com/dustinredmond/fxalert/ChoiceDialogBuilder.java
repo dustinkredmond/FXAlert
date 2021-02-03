@@ -78,6 +78,15 @@ public class ChoiceDialogBuilder implements IDialogBuilder<ChoiceDialogBuilder> 
      * {@inheritDoc}
      */
     @Override
+    public ChoiceDialogBuilder withStyle(String style) {
+        dialog.getDialogPane().setStyle(style);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public ChoiceDialogBuilder withTitleBarIcon(Image image) {
         ((Stage) dialog.getDialogPane().getScene().getWindow()).getIcons().add(image);
         return this;

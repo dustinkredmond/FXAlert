@@ -170,7 +170,7 @@ public class FlashBuilder {
      * @param style The JavaFX CSS style
      * @return The FlashBuilder
      */
-    public FlashBuilder withPaneStyle(String style) {
+    public FlashBuilder withStyle(String style) {
         this.paneStyle = style;
         return this;
     }

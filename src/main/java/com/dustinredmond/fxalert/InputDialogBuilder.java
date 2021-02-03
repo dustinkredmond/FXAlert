@@ -16,9 +16,6 @@ package com.dustinredmond.fxalert;
  *  limitations under the License.
  */
 
-import java.util.List;
-import java.util.Optional;
-import java.util.regex.Pattern;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
@@ -26,11 +23,13 @@ import javafx.scene.control.DialogEvent;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+
+import java.util.Optional;
+import java.util.regex.Pattern;
 
 /**
  * Builder-style syntax for creating
@@ -50,6 +49,15 @@ public class InputDialogBuilder implements IDialogBuilder<InputDialogBuilder> {
         dialog.setTitle(title);
         dialog.setHeaderText(header);
         dialog.setContentText(content);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public InputDialogBuilder withStyle(String style) {
+        dialog.getDialogPane().setStyle(style);
         return this;
     }
 

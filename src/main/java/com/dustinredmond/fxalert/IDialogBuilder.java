@@ -18,8 +18,6 @@ package com.dustinredmond.fxalert;
 
 import java.net.URL;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -42,6 +40,13 @@ public interface IDialogBuilder<T> {
      * @return the dialog builder
      */
     T withText(String title, String header, String content);
+
+    /**
+     * Sets the {@code DialogPane}'s style
+     * @param style JavaFX CSS style to apply
+     * @return the dialog builder
+     */
+    T withStyle(String style);
 
     /**
      * Sets the dialog's header and content texts.
@@ -174,7 +179,7 @@ public interface IDialogBuilder<T> {
     /**
      * Specifies expandable content to be used in the Alert
      * @param content A Node to act as content
-     * @param expanded If true, the content is expaned
+     * @param expanded If true, the content is expanded
      * @return the dialog builder
      */
     T withExpandableContent(Node content, boolean expanded);

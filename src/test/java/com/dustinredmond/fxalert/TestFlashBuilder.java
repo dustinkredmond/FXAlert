@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 public class TestFlashBuilder extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         // Displays a "flash" alert of type error
         // with a header text and buttons for the content
         FXAlert.flash().error()
@@ -46,7 +46,7 @@ public class TestFlashBuilder extends Application {
             .show();
 
         // Displays a "flash" alert with a white background
-        FXAlert.flash().withPaneStyle("-fx-background-color: WHITE").show();
+        FXAlert.flash().withStyle("-fx-background-color: WHITE").show();
     }
 
     public static void main(String[] args) {

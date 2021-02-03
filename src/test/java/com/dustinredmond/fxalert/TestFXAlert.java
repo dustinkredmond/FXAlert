@@ -16,16 +16,16 @@ package com.dustinredmond.fxalert;
  *  limitations under the License.
  */
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Runnable test class for FXAlert
@@ -34,7 +34,7 @@ import javafx.stage.Stage;
 public class TestFXAlert extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         List<AlertBuilder> builders = new ArrayList<>();
 
         builders.add(FXAlert.info().withText("title", "header", "content"));
@@ -58,9 +58,8 @@ public class TestFXAlert extends Application {
             .withButtonTypes(new ButtonType("Yes"), new ButtonType("No"))
             .withText("Yes or no?")
             .showAndWait();
-        result2.ifPresent(e -> {
-            FXAlert.info().withText("User clicked " + e.getText()).show();
-        });
+        result2.ifPresent(e ->
+                FXAlert.info().withText("User clicked " + e.getText()).show());
 
         FXAlert.setGlobalTitleBarIcon(new Image(getClass().getResourceAsStream("java.png")));
         FXAlert.showInfo("This has a custom icon."); // well, on some desktops, not all Linux distros

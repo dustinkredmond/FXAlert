@@ -117,6 +117,15 @@ public class AlertBuilder implements IDialogBuilder<AlertBuilder> {
      * {@inheritDoc}
      */
     @Override
+    public AlertBuilder withStyle(String style) {
+        this.alert.getDialogPane().setStyle(style);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public AlertBuilder withTitleBarIcon(Image image) {
         ((Stage) this.alert.getDialogPane().getScene().getWindow())
             .getIcons().add(image);
