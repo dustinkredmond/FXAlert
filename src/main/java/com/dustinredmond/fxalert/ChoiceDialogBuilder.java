@@ -83,6 +83,12 @@ public class ChoiceDialogBuilder implements IDialogBuilder<ChoiceDialogBuilder> 
         return this;
     }
 
+    @Override
+    public ChoiceDialogBuilder withStylesheet(String url) {
+        dialog.getDialogPane().getScene().setUserAgentStylesheet(url);
+        return this;
+    }
+
     /**
      * {@inheritDoc}
      */

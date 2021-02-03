@@ -49,6 +49,13 @@ public interface IDialogBuilder<T> {
     T withStyle(String style);
 
     /**
+     * Sets the User Agent stylesheet for the dialog.
+     * @param url Path to the stylesheet
+     * @return the dialog builder
+     */
+    T withStylesheet(String url);
+
+    /**
      * Sets the dialog's header and content texts.
      * @param header Dialog's header text
      * @param content Dialog's content text

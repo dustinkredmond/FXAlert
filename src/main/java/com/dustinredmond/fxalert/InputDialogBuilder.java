@@ -65,6 +65,15 @@ public class InputDialogBuilder implements IDialogBuilder<InputDialogBuilder> {
      * {@inheritDoc}
      */
     @Override
+    public InputDialogBuilder withStylesheet(String url) {
+        dialog.getDialogPane().getScene().setUserAgentStylesheet(url);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public InputDialogBuilder withTitleBarIcon(Image image) {
         ((Stage) dialog.getDialogPane().getScene().getWindow()).getIcons().add(image);
         return this;

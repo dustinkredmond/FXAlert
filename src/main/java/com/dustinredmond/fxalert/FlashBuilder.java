@@ -176,6 +176,16 @@ public class FlashBuilder {
     }
 
     /**
+     * Sets the stylesheet for the Flash alert's content Node
+     * @param url Path to a stylesheet
+     * @return the FlashBuilder
+     */
+    public FlashBuilder withStylesheet(String url) {
+        this.content.getScene().setUserAgentStylesheet(url);
+        return this;
+    }
+
+    /**
      * Shows the "flash" notification for a brief period of
      * time in the lower-right corner of the user's active screen.
      */
