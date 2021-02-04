@@ -181,7 +181,7 @@ public class FlashBuilder {
      * @return the FlashBuilder
      */
     public FlashBuilder withStylesheet(String url) {
-        this.content.getScene().setUserAgentStylesheet(url);
+        this.content.getScene().getStylesheets().add(url);
         return this;
     }
 
