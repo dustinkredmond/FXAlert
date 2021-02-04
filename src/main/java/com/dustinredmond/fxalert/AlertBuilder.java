@@ -127,7 +127,7 @@ public class AlertBuilder implements IDialogBuilder<AlertBuilder> {
      */
     @Override
     public AlertBuilder withStylesheet(String url) {
-        this.alert.getDialogPane().getScene().setUserAgentStylesheet(url);
+        this.alert.getDialogPane().getStylesheets().add(url);
         return this;
     }
 

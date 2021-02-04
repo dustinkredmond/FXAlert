@@ -66,7 +66,7 @@ public class InputDialogBuilder implements IDialogBuilder<InputDialogBuilder> {
      */
     @Override
     public InputDialogBuilder withStylesheet(String url) {
-        dialog.getDialogPane().getScene().setUserAgentStylesheet(url);
+        dialog.getDialogPane().getStylesheets().add(url);
         return this;
     }
 
