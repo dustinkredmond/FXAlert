@@ -29,24 +29,30 @@ public class TestFlashBuilder extends Application {
     public void start(Stage stage) {
         // Displays a "flash" alert of type error
         // with a header text and buttons for the content
-        FXAlert.flash().error()
+        FXAlert.flash(stage).error()
+            .withInitOwner(stage)
             .withHeader(new Label("Test1"))
             .withContent(new HBox(5, new Button("Close"), new Button("Ignore")))
             .show();
 
         // Displays a "flash" alert of type info
         // with content text
-        FXAlert.flash().withContent("Hello, World!").show();
+        FXAlert.flash(stage).withContent("Hello, World!").show();
 
         // Displays a "flash" alert of type warning
         // with custom icon
-        FXAlert.flash().warn()
+        FXAlert.flash(stage).warn()
             .withGraphic(new Image(getClass().getResourceAsStream("java.png")))
             .withContent("An alert with an icon!")
             .show();
 
         // Displays a "flash" alert with a white background
-        FXAlert.flash().withStyle("-fx-background-color: WHITE").show();
+        FXAlert.flash(stage).withStyle("-fx-background-color: WHITE").show();
+
+        // Displays a "flash" alert without initOwner
+        // Will create separate taskbar icon
+        FXAlert.flash().withContent("Test").show();
+
     }
 
     public static void main(String[] args) {
