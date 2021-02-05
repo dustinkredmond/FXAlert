@@ -174,4 +174,16 @@ class, most of the action happens there.
 Each public method has thorough a Javadoc. Protected, package-private ,and private methods should 
 also define a reasonable Javadoc.
 
+### Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md). I'm happy to have you contribute to FXAlert, but I have a few
+minor beliefs on how it should be done.
+
+In summary of CONTRIBUTING.md:
+  - Write clean code
+  - Use Issues and Pull Requests properly
+  - Don't waste maintainers' time with small typo fixes, etc.
+  - If the existing code handles something in an opinionated way,
+    try to stick with that same convention.
+
 ---
