@@ -1,7 +1,7 @@
 package com.dustinredmond.fxalert;
 
 /*
- *  Copyright 2020  Dustin K. Redmond
+ *  Copyright 2021  Dustin K. Redmond
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
