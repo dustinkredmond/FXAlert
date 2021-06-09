@@ -44,13 +44,15 @@ We can use the static methods:
  - FXAlert.exception()
  - FXAlert.input()
  - FXAlert.flash()
+ - FXAlert.choose()
  
 These methods return  a builder-style syntax.
 We can chain method calls to get the behavior we need.
 
-`FXAlert.info().withText("Hello, World!").withTitleBarIcon(icon).show();`
-
-`FXAlert.info().withGraphic(myGraphic).withText("Test").show();`
+```java
+FXAlert.info().withText("Hello, World!").withTitleBarIcon(icon).show();
+FXAlert.info().withGraphic(myGraphic).withText("Test").show();
+```
 
 ---
 
@@ -58,11 +60,15 @@ We can chain method calls to get the behavior we need.
 
 We can set various types of text with overloaded `withText(...)` methods.
 
+```java
+FXAlert.info().withText("Title text", "Header text", "Content text").show();
+FXAlert.info().withText("Header text", "Content text").show();
+FXAlert.info().withText("Content text").show();
 ```
-FXAlert.info().withText("Title text", "Header text", "Content text");
-FXAlert.info().withText("Header text", "Content text");
-FXAlert.info().withText("Content text");
-```
+
+This will produce an Alert of type info with the given texts:
+
+![withText](./img/withText.png)
 
 ---
 
@@ -71,11 +77,23 @@ FXAlert.info().withText("Content text");
 If long method chains aren't your thing, we've got you covered. You can also use static convenience
 methods included in FXAlert. 
 
-```
+```java
 FXAlert.showInfo("I'm an info dialog!");
+```
+
+![info](./img/info.png)
+
+```java
 FXAlert.showWarning("I'm a warning dialog!");
+```
+
+![warning](./img/warning.png)
+
+```java
 FXAlert.showException(ex, "I'm an exception dialog!");
 ```
+
+![exception](./img/exception.png) 
 
 Note that each short-hand method, also has a builder form:
 ```java
@@ -90,7 +108,7 @@ try {
 
 ### How about confirmation dialogs, how do those work?
 
-```
+```java
 Optional<ButtonType> result = FXAlert.confirm().withText("Please confirm!").showAndWait();
 result.ifPresent(e -> {
  // do something with our result here
@@ -106,6 +124,11 @@ if (okay) {
     // user cancelled or closed window
 }
 ```
+
+This will create an Alert like below:
+
+![confirm](./img/confirm.png)
+
 ---
 
 ### Input Dialogs
@@ -129,12 +152,14 @@ users enter the correct data type before submission and prevents entry of other 
 The allowed type is determined by the appropriate `showAndWaitXXX` method. This prevents runtime errors when trying to
 parse the inputs, and saves a developer from having to check the returned data is a valid String/Double/Integer.
 
+![input](./img/input.png)
+
 ---
 
 ### "Flash" notifications
 
-These are notifications that cause a banner to be temporarily displayed on the lower-right
-corner of the screen. The banner appears for a few seconds, then fades out of view.
+These are notifications that cause a banner to be temporarily displayed in the lower-right corner of the screen.
+The banner appears for a few seconds, then fades out of view.
 
 These can be built and invoked like below:
 
@@ -162,6 +187,25 @@ While the Alert class's built-in icons are nice, in order to retrieve their icon
 up by the appropriate CSS class. Since the JavaFX stylesheet could change in a future release. It's preferred
 that a developer specify their own custom "flash" notification graphic.
 
+A `flash` notification:
+
+![flash](./img/flash.png)
+
+---
+
+### Choice Dialogs
+
+Choice dialogs present the user with a list of choices from which they must pick.
+This is invoked by calling the `FXAlert.choose()` method.
+
+```java
+FXAlert.choose("Option 1", "Option 2", "Option 3")
+        .withText("Pick one!")
+        .showAndWait();
+```
+
+![choose](./img/choose.png)
+
 ---
 
 ### Documentation
@@ -173,6 +217,8 @@ class, most of the action happens there.
 
 Each public method has thorough Javadoc. Protected, package-private, and private methods should 
 also define a reasonable Javadoc if they're not straight-forward.
+
+---
 
 ### Contributing
 
